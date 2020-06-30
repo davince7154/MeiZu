@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.meizu.com/static/global/images/favicon-90c2e618ff.ico"
+        type="image/x-icon">
+    <title>魅族官网</title>
+    <link rel="stylesheet" href="./css/reset.min.css">
+    <link rel="stylesheet" href="./font_7gb0q1hmvky/iconfont.css">
+    <link rel="stylesheet" href="./font_e7xejrk7lv/iconfont.css">
+    <link rel="stylesheet" href="./css/common.min.css">
+    <link rel="stylesheet" href="./css/goods.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="index-wrap">
+            <div id="" class="header-show">
+                <h1><a href="index.html"><img src="./images/logo.png" alt=""></a></h1>
+                <div class="right-box">
+                    <div id="search-box">
+                        <input type="text" placeholder="魅族 16T">
+                        <em class="iconfont icon-fangdajing"></em>
+                    </div>
+                    <div id="user-box"><img src="./images/blackUser.png" alt=""></div>
+                    <div id="shoppingcart-box"><em class="iconfont icon-gouwuche"></em><em>0</em></div>
+                </div>
+                <nav>
+                    <li><a href="">手机</a></li>
+                    <li><a href="">声学</a></li>
+                    <li><a href="">配件</a></li>
+                    <li><a href="">生活</a></li>
+                    <li><a href="">Flyme</a></li>
+                    <li><a href="">服务</a></li>
+                    <li><a href="">专卖店</a></li>
+                    <li><a href="">社区</a></li>
+                    <li><a href="">政企定制</a></li>
+                    <li><a href="">APP下载</a></li>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="goods-wrap clear-fix">
+        </div>
+    </div>
+    <div id="footer">
+        <div class="top index-wrap clear-fix">
+            <div class="left-box">
+                <ul class="clear-fix">
+                    <li><img src="https://fms.res.meizu.com/dms/2018/07/13/2c69bf7c-2d29-4fd4-852e-0aa497f36f51.png"
+                            alt=""><span>满80免运费</span></li>
+                    <li><img src="https://fms.res.meizu.com/dms/2018/07/13/d28eac8b-b915-49dc-9dbd-80884a07d44f.png"
+                            alt=""><span>100+ 城市次日送达</span></li>
+                    <li><img src="https://fms.res.meizu.com/dms/2018/07/13/b21f3e65-f7f4-4693-914c-c070faf96770.png"
+                            alt=""><span>7天无理由退货</span></li>
+                    <li><img src="https://fms.res.meizu.com/dms/2018/07/13/1998f0da-a439-4e07-9736-e6a1c39fb0ae.png"
+                            alt=""><span>15天换货保障</span></li>
+                    <li><img src="https://fms.res.meizu.com/dms/2018/07/13/420825c1-4763-436d-b3e1-721651ccc70c.png"
+                            alt=""><span>1年免费保修</span></li>
+                    <li><img src="https://fms.res.meizu.com/dms/2018/07/13/1c5cfeff-1b35-499e-bc2a-1fd29305be69.png"
+                            alt=""><span>上门快修</span></li>
+                </ul>
+            </div>
+            <div class="right-box">
+                <p>周一至周日 8:00-20:00</p>
+                <p>400-788-3333</p>
+                <p>在线客服</p>
+            </div>
+        </div>
+        <hr>
+        <div class="bottom index-wrap clear-fix">
+            <div class="left-box">
+                <ul class="clear-fix">
+                    <li>了解魅族</li>
+                    <li>加入我们</li>
+                    <li>联系我们</li>
+                    <li>Flyme</li>
+                    <li>魅族社区</li>
+                    <li>天猫旗舰店</li>
+                    <li>问题反馈</li>
+                    <li>线上销售授权名单公示</li>
+                    <li class="border_none">出版物经营许可证</li>
+                </ul>
+                <p>©2019 Meizu Telecom Equipment Co., Ltd. All rights reserved.    粤ICP备13003602号合字B2-20170010 营业执照 法律声明
+                    粤公网安备 44049102496009 号</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/fangdajing.js"></script>
+<script>
+    $(() => {
+        // ajax请求，获取数据
+        let goodsId = location.search.split("=")[1]
+        $.ajax({
+            type: "post",
+            url: "../server/getGoods.php",
+            data: { "goods_id": goodsId },
+            dataType: "json",
+            success(data) {
+
+                // 图片区域
+                let imgListBoxStr = data["goods_color1"].split("||").map((item, index) => `<li class="${index === 0 ? "active" : ""}"> <img src="${item}" alt=""></li>`).join("")
+                let imgBoxStr = `<div class="img-box">
+                                    <div class="showimg-box">
+                                        <div class="showImg" style="background-image:url('${data["goods_color1"].split("||")[0]}')"></div>
+                                        <div class="hidImg" style="background-image:url('${data["goods_color1"].split("||")[0]}')"</div>
+                                    </div>
+                                    <ul class="img-list">${imgListBoxStr}</ul>
+                            </div>`
+                $(`<div class="img-box">${imgBoxStr}</div>`).appendTo($(".goods-wrap"))
+
+                // 信息区域  
+                let goodsColorStr = `<dl class="clear-fix set-sale goods-color"><dt>颜色分类</dt><dd class="clear-fix">`
+                for (let i = 1; i <= 4; i++) {
+                    if (!data[`goods_color${i}`]) {
+                        break
+                    }
+                    goodsColorStr += `<div class="${i === 1 ? "active" : ""}"  data-imageUrl="${data[`goods_color${i}`]}"><img src=${data[`goods_color${i}`].split("||")[0]} ><span>${data[`goods_color${i}_name`]}</span></div>`
+                }
+                goodsColorStr += `</dd></dl>`
+
+                if (data.size) {
+                    let sizeStr = `<dl class="clear-fix set-sale">
+                                        <dt>内 存</dt>
+                                        <dd class="clear-fix">
+                                            ${data.size.split("/").map((item, index) => `<div class="${index === 0 ? "active" : ""}"><span>${item}</span></div>`).join("")}
+                                            </dd>
+                                            </dl>`
+                    goodsColorStr += sizeStr
+                }
+                let descBoxStr = ` <div class="desc-box">
+                                    <h3>${data["goods_name"]}</h3>
+                                    <p class="goods-desc">${data["goods_desc"]}</p>
+                                    <p class="goods-price">￥${data["goods_price"]}</p>
+                                    <div class="check-list">
+                                        ${goodsColorStr}
+                                        <dl id="goods-num-box" class="set-sale clear-fix">
+                                            <dt>数 量</dt>
+                                            <dd class="clear-fix">
+                                                <span id="lessen-quantity" class="goods-min-num">-</span>
+                                                <input type="text" value="1" id="goods-num">
+                                                <span id="add-quantity">+</span></dd>
+                                        </dl>
+                                    </div>
+                                    <div id="container-box">
+                                        <div id="buyNow">立即购买</div>
+                                        <div id="addShopingCart">加入购物车</div>
+                                    </div>
+                                </div>`
+                $(`<div class="desc-box">${descBoxStr}</div>`).appendTo($(".goods-wrap"))
+
+                addEvent()
+            }
+        })
+
+        // 添加事件（动画）
+        function addEvent() {
+            new Fangdajing({
+                showDom: $(".showImg"),
+                hidDom: $(".hidImg"),
+                multiple: 2,
+                parentDom: $(".showimg-box"),
+            })
+            $(".check-list .goods-color dd div").click(function () {
+                let imageUrl = $(this).attr("data-imageUrl").split("||")
+                $(".img-list li").each((index, ele) => {
+                    $(ele).find("img").attr("src", imageUrl[index])
+                })
+                $(".showImg,.hidImg").css("background-image", `url('${imageUrl[0]}')`)
+            })
+            $(".check-list  dd div").click(function () {
+                $(this).addClass("active").siblings().removeClass("active")
+            })
+            $("#goods-num-box span").click(function () {
+                if ($(this).attr("id") === "lessen-quantity") {
+                    let num = parseInt($(this).next().val()) - 1
+                    if (num <= 1) {
+                        num = 1
+                        $(this).addClass("goods-min-num")
+                    }
+                    $(this).next().val(num)
+                } else if ($(this).attr("id") === "add-quantity") {
+                    let num = parseInt($(this).prev().val()) + 1
+                    $(this).prev().val(num).prev().removeClass("goods-min-num")
+                }
+            })
+
+            $(".img-list li").click(function () {
+                $(this).addClass("active").siblings().removeClass("active")
+                $(".showImg,.hidImg").css("background-image", `url('${$(this).find("img").attr("src")}')`)
+            })
+        }
+    })
+</script>

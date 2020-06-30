@@ -1,0 +1,88 @@
+@charset "utf-8";
+body, html, ul, li, ol, h1, h2, h3, h4, h5, h6, p, img, input, div, fieldset, form, dl, dt, header, dd, legend, footer, nav, main, figure, figcaption, section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*触发怪异盒子*/
+}
+
+body, html {
+    font-family: "微软雅黑";
+    font-size: 16px;
+}
+
+ul, li, ol {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 16px;
+}
+
+a, u {
+    text-decoration: none;
+}
+
+em, i {
+    font-style: normal;
+}
+
+b, strong {
+    font-weight: normal;
+}
+
+img {
+    border: none;
+    display: block;
+    /* 清除照片的3px*/
+}
+
+input {
+    outline: none;
+}
+
+/* 万能清除法 */
+
+.clear-fix::after {
+    content: ".";
+    height: 0;
+    display: block;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.clear-fix {
+    zoom: 1;
+}
+
+/* 清除样式 */
+
+.bg_none {
+    background: none!important;
+}
+
+.margin_none {
+    margin: 0!important;
+}
+.marginRight_none {
+    margin-right: 0!important;
+}
+.border_none {
+    border: none!important;
+}
+
+.after_none::after {
+    display: none;
+}
+
+/* 浮动样式 */
+
+.float_l {
+    float: left;
+}
+
+.float_r {
+    float: right;
+}
