@@ -1,5 +1,5 @@
 @charset "UTF-8";
-body, html, ul, li, ol, h1, h2, h3, h4, h5, h6, p, img, input, div, fieldset, form, dl, dt, header, dd, legend, footer, nav, main, figure, figcaption, section {
+body, html, ul, li, ol, h1, h2, h3, h4, h5, h6, p, img, input, div, fieldset, form, dl, dt, header, dd, legend, footer, nav, main, figure, figcaption, section, tr, td, table {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

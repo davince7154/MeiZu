@@ -1,5 +1,5 @@
 <?php
-$goodsType = $_REQUEST["goods_type"];
+$goodsType = $_REQUEST["goodsType"];
 
 $con = mysqli_connect("localhost","root","123456","meizu");
 
@@ -15,5 +15,5 @@ while($data = mysqli_fetch_assoc($res)){
     array_push($arr,$data);
 }
 
-echo json_encode($arr[0]);
+echo json_encode($arr);
 ?>

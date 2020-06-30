@@ -3,7 +3,7 @@ body {
 }
 
 #header {
-  background-color: #fff;
+  background-color: #fff !important;
   position: relative;
 }
 
@@ -153,7 +153,7 @@ body {
 }
 
 #footer .login-wrap {
-  padding: 24px 20px 30px;
+  padding: 24px 120px 30px;
 }
 
 #footer .login-wrap .top ul {

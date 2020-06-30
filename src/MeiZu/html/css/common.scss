@@ -2,6 +2,8 @@
 
 .index-wrap,
 .login-wrap,
+.goodsType-wrap,
+.shopping-wrap,
 .goods-wrap {
     width: 1240px;
     margin: 0 auto;
@@ -14,186 +16,188 @@ body {
     position: absolute;
     z-index: 999;
     height: 80px;
-
-    .header-show {
-        height: 80px;
-        h1 {
-            width: 125px;
+    .index-wrap {
+        height: 100%;
+        .header-show {
             height: 80px;
-            float: left;
-            padding: 28px 0;
-            img {
-                width: 100%;
-            }
-        }
-        nav {
-            float: right;
-            li {
-                float: left;
-                a {
-                    display: block;
-                    padding: 30px 20px;
-                    line-height: 20px;
-                    font-size: 14px;
-                    color: #000;
-                }
-            }
-        }
-        .right-box {
-            margin-left: 10px;
-            float: right;
-            width: 260px;
-            #search-box {
-                float: left;
-                position: relative;
-                margin: 26px 5px 0 10px;
-                em {
-                    position: absolute;
-                    right: 15px;
-                    cursor: pointer;
-                    user-select: none;
-                    top: 5px;
-                }
-                input {
-                    width: 170px;
-                    height: 30px;
-                    line-height: 28px;
-                    padding-left: 15px;
-                    font-size: 12px;
-                    background: #fff;
-                    border-radius: 20px;
-                    border: 1px solid #999;
-                }
-            }
-            #user-box {
-                padding: 27px 0 0 8px;
-                float: left;
-                cursor: pointer;
-                position: relative;
-                img {
-                    border-radius: 50%;
-                    width: 30px;
-                    height: 30px;
-                }
-                #userList {
-                    width: 100px;
-                    position: absolute;
-                    top: 65px;
-                    display: none;
-                    left: 60%;
-                    margin-left: -50px;
-                    border-radius: 2px;
-                    background: #fff;
-                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-                    li {
-                        font-size: 12px;
-                        text-align: center;
-                        margin: 15px auto;
-                        cursor: pointer;
-                        z-index: 10;
-                        a {
-                            color: #666;
-                        }
-                        a:hover {
-                            color: red;
-                        }
-                    }
-                }
-                #userList::before {
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    top: -5px;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 2px;
-                    left: 50%;
-                    margin-left: -5px;
-                    background: #fff;
-                    transform: rotate(45deg);
-                }
-            }
-            #shoppingcart-box {
-                padding: 27px 0 0 8px;
-                position: relative;
-                width: 34px;
+            h1 {
+                width: 125px;
                 height: 80px;
                 float: left;
-                a {
-                    cursor: pointer;
-                    em:nth-of-type(1) {
-                        width: 30px;
-                        position: absolute;
-                        height: 30px;
+                padding: 28px 0;
+                img {
+                    width: 100%;
+                }
+            }
+            nav {
+                float: right;
+                li {
+                    float: left;
+                    a {
                         display: block;
-                        line-height: 30px;
-                        font-size: 22px;
-                        color: #666;
-                    }
-                    em:nth-of-type(2) {
-                        background: #c00;
-                        height: 15px;
-                        border-radius: 50px;
-                        padding: 0 4px;
-                        line-height: 15px;
-                        text-align: center;
-                        color: #fff;
-                        font-size: 12px;
-                        position: absolute;
-                        top: 24px;
-                        right: -4px;
+                        padding: 30px 20px;
+                        line-height: 20px;
+                        font-size: 14px;
+                        color: #000;
                     }
                 }
-                .hidden-box {
-                    position: absolute;
-                    top: 70px;
-                    left: -200px;
-                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-                    width: 270px;
-                    padding: 20px 0;
-                    display: none;
-                    background: #fff;
-                    min-height: 60px;
-                    li {
-                        width: 100%;
-                        border-bottom: 1px solid #eee;
-                        height: 100px;
-                        position: relative;
-                        padding: 20px 10px;
-                        dl {
-                            dt {
-                                width: 50px;
-                                height: 50px;
-                                margin-right: 20px;
-                                float: left;
-                                img {
-                                    width: 100%;
-                                    height: 100%;
-                                }
+            }
+            .right-box {
+                margin-left: 10px;
+                float: right;
+                width: 260px;
+                #search-box {
+                    float: left;
+                    position: relative;
+                    margin: 26px 5px 0 10px;
+                    em {
+                        position: absolute;
+                        right: 15px;
+                        cursor: pointer;
+                        user-select: none;
+                        top: 5px;
+                    }
+                    input {
+                        width: 170px;
+                        height: 30px;
+                        line-height: 28px;
+                        padding-left: 15px;
+                        font-size: 12px;
+                        background: #fff;
+                        border-radius: 20px;
+                        border: 1px solid #999;
+                    }
+                }
+                #user-box {
+                    margin: 27px 0 0 8px;
+                    float: left;
+                    cursor: pointer;
+                    position: relative;
+                    img {
+                        border-radius: 50%;
+                        width: 30px;
+                        height: 30px;
+                    }
+                    #userList {
+                        width: 100px;
+                        position: absolute;
+                        top: 40px;
+                        display: none;
+                        left: 55%;
+                        margin-left: -50px;
+                        border-radius: 2px;
+                        background: #fff;
+                        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                        li {
+                            font-size: 12px;
+                            text-align: center;
+                            margin: 15px auto;
+                            cursor: pointer;
+                            z-index: 10;
+                            a {
+                                color: #666;
                             }
-                            dd {
-                                text-align: left;
-                                float: left;
-                                width: 125px;
-                                height: 100%;
-                                p {
-                                    width: 100%;
-                                    margin-bottom: 10px;
-                                    font-size: 16px;
+                            a:hover {
+                                color: red;
+                            }
+                        }
+                    }
+                    #userList::before {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: -5px;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 2px;
+                        left: 50%;
+                        margin-left: -5px;
+                        background: #fff;
+                        transform: rotate(45deg);
+                    }
+                }
+                #shoppingcart-box {
+                    margin: 27px 0 0 3px;
+                    position: relative;
+                    width: 34px;
+                    height: 33px;
+                    float: left;
+                    a {
+                        cursor: pointer;
+                        em:nth-of-type(1) {
+                            width: 30px;
+                            position: absolute;
+                            height: 30px;
+                            display: block;
+                            line-height: 30px;
+                            font-size: 22px;
+                            color: #666;
+                        }
+                        em:nth-of-type(2) {
+                            background: #c00;
+                            height: 15px;
+                            border-radius: 50px;
+                            padding: 0 4px;
+                            line-height: 15px;
+                            text-align: center;
+                            color: #fff;
+                            font-size: 12px;
+                            position: absolute;
+                            top: -2px;
+                            right: -2px;
+                        }
+                    }
+                    .hidden-box {
+                        position: absolute;
+                        top: 50px;
+                        left: -200px;
+                        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                        width: 270px;
+                        padding: 20px 0;
+                        display: none;
+                        background: #fff;
+                        min-height: 60px;
+                        li {
+                            width: 100%;
+                            border-bottom: 1px solid #eee;
+                            height: 100px;
+                            position: relative;
+                            padding: 20px 10px;
+                            dl {
+                                dt {
+                                    width: 50px;
+                                    height: 50px;
+                                    margin-right: 20px;
+                                    float: left;
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                    }
                                 }
-                                em {
-                                    font-size: 12px;
-                                    color: red;
-                                }
-                                button {
-                                    position: absolute;
-                                    right: 20px;
-                                    bottom: 10px;
-                                    color: red;
-                                    font-size: 12px;
-                                    border: none;
-                                    cursor: pointer;
-                                    background: #fff;
+                                dd {
+                                    text-align: left;
+                                    float: left;
+                                    width: 125px;
+                                    height: 100%;
+                                    p {
+                                        width: 100%;
+                                        margin-bottom: 10px;
+                                        font-size: 16px;
+                                    }
+                                    em {
+                                        font-size: 12px;
+                                        color: red;
+                                    }
+                                    button {
+                                        position: absolute;
+                                        right: 20px;
+                                        bottom: 10px;
+                                        color: red;
+                                        font-size: 12px;
+                                        border: none;
+                                        cursor: pointer;
+                                        background: #fff;
+                                    }
                                 }
                             }
                         }

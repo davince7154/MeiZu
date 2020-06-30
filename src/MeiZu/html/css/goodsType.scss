@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+#header {
+    background-color: #fff !important;
+}
+#content {
+    padding: 80px 0;
+    #goodsTypeBanner {
+        width: 100%;
+        overflow: hidden;
+        height: 450px;
+        img {
+            margin: 0 auto;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+        }
+    }
+    .section {
+        padding-top: 87px;
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 400;
+            font-size: 30px;
+        }
+        .goods-list {
+            li {
+                float: left;
+                cursor: pointer;
+                text-align: center;
+                width: 403px;
+                padding-top: 40px;
+                height: 556px;
+                margin: 0 15px 15px 0;
+                background-color: #fff;
+                .img-box {
+                    width: 320px;
+                    height: 320px;
+                    margin: 0 auto;
+                    margin-bottom: 46px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .goods-name {
+                    font-size: 23px;
+                    color: #333;
+                }
+                .goods-desc {
+                    margin: 5px auto;
+                    line-height: 24px;
+                    display: block;
+                    color: #666;
+                    width: 270px;
+                    font-size: 16px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                .goods-price-box {
+                    line-height: 40px;
+                    i {
+                        color: #c00;
+                        font-size: 16px;
+                    }
+                    .goods-price {
+                        font-size: 28px;
+                        color: #c00;
+                    }
+                }
+            }
+            li:hover{
+                box-shadow: 0 15px 30px rgba(0,0,0,.1);
+                transition: all  .3s;
+            }
+        }
+    }
+}

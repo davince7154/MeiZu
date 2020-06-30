@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://www.meizu.com/static/global/images/favicon-90c2e618ff.ico"
         type="image/x-icon">
-    <title>魅族官网</title>
+    <title></title>
     <link rel="stylesheet" href="./css/reset.min.css">
     <link rel="stylesheet" href="./font_7gb0q1hmvky/iconfont.css">
     <link rel="stylesheet" href="./font_e7xejrk7lv/iconfont.css">
     <link rel="stylesheet" href="./css/common.min.css">
-    <link rel="stylesheet" href="./css/index.min.css">
+    <link rel="stylesheet" href="./css/goodsType.min.css">
 </head>
 
 <body>
@@ -72,9 +72,8 @@
             <div class="header-hid"></div>
         </div>
     </div>
-    <div id="banner">
-    </div>
     <div id="content">
+
     </div>
     <div id="footer">
         <div class="top index-wrap clear-fix">
@@ -122,9 +121,43 @@
 </body>
 
 </html>
-
 <script src="./js/jquery-3.2.1.min.js"></script>
-<script src="./js/banner.js"></script>
 <script src="./js/Cookie.js"></script>
 <script src="./js/nav.js"></script>
-<script src="./js/index.js"></script>
+<script>
+    $(() => {
+        let goodsType = decodeURI(location.search.split("=")[1])
+        $("head title").text(`${goodsType} -魅族官网`)
+
+        $.ajax({
+            data: { "goods_type": goodsType },
+            url: "../server/getTypeBannerAndGoods.php",
+            dataType: "json",
+            type: "post",
+            success(data) {
+                let goodsListStr = data.map((item, index) => {
+                    return `<li class="goods-box ${(index + 1 )% 3 === 0 ?"marginRight_none":""}" data-goodsId="${item["goods_id"]}">
+                                <div class="img-box"><img src="${item["goods_color1"].split("||")[0]}" alt=""></div>
+                                <p class="goods-name">${item["goods_name"]}</p>
+                                <span class="goods-desc">${item["goods_desc"]}</span>
+                                <p class="goods-price-box"><i>￥</i><em class="goods-price">${item["goods_price"]}</em></p>
+                            </li>`
+                }).join("")
+                let htmlStr =
+                    `<div id="goodsTypeBanner"><img src="${data[0]["image"]}" alt=""></div>
+                    <div class="section goodsType-wrap">
+                        <h2>${goodsType}</h2>
+                        <ul class="goods-list clear-fix">${goodsListStr}</ul>
+                    </div>`
+
+                $("#content").html(htmlStr)
+
+                // 商品点击跳转事件
+
+                $("#content .goods-box").click(function(){
+                    open("goods.html?goodsId="+$(this).data("goodsid"))
+                })
+            }
+        })
+    })
+</script>

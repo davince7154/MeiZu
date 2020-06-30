@@ -13,5 +13,6 @@ $arr = array();
 while ($data = mysqli_fetch_assoc($res)) {
     array_push($arr, $data);
 }
+mysqli_close($con);
 
 echo $arr[0]["username"];

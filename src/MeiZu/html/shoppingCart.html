@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.meizu.com/static/global/images/favicon-90c2e618ff.ico"
+        type="image/x-icon">
+    <title>购物车 - 我的购物车</title>
+    <link rel="stylesheet" href="./css/reset.min.css">
+    <link rel="stylesheet" href="./font_7gb0q1hmvky/iconfont.css">
+    <link rel="stylesheet" href="./font_e7xejrk7lv/iconfont.css">
+    <link rel="stylesheet" href="./css/common.min.css">
+    <link rel="stylesheet" href="./css/shoppingcart.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div class="login-wrap">
+            <h1><a href="index.html"><img src="./images/logo.png" alt=""></a></h1>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="shopping-wrap">
+            <table>
+                <tr>
+                    <td><input type="checkbox" id="allCheck"><span>全选</span></td>
+                    <td>单价(元)</td>
+                    <td>数量</td>
+                    <td>小计(元)</td>
+                    <td>编辑</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" id="" class="one-check">
+
+                        <dl class="clear-fix">
+                            <dt><img src="https://openfile.meizu.com/group1/M00/07/7C/Cgbj0V2vva6AOk-vAAuUyJ3QsAo839.png@120x120.png"
+                                    alt=""></dt>
+                            <dd>
+                                <p class="goods-name">Pandaer 魔术师帽衫</p>
+                                <p class="goods-color">藏青色 L/175</p>
+                            </dd>
+                        </dl>
+                    </td>
+                    <td>
+                        <p class="goods-price">￥399</p>
+                    </td>
+                    <td><span class="less-q">-</span><input type="text" value="1" maxlength="2"
+                            class="goods-count"><span class="add-q">+</span></td>
+                    <td class="goods-all-price-box">
+                        <p class="goods-all-price">￥399</p>
+                    </td>
+                    <td>
+                        <p class="delete-goods">删除</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" id="" class="one-check">
+
+                        <dl class="clear-fix">
+                            <dt><img src="https://openfile.meizu.com/group1/M00/07/7C/Cgbj0V2vva6AOk-vAAuUyJ3QsAo839.png@120x120.png"
+                                    alt=""></dt>
+                            <dd>
+                                <p class="goods-name">Pandaer 魔术师帽衫</p>
+                                <p class="goods-color">藏青色 L/175</p>
+                            </dd>
+                        </dl>
+                    </td>
+                    <td>
+                        <p class="goods-price">￥399</p>
+                    </td>
+                    <td><span class="less-q">-</span><input type="text" value="1" maxlength="2"
+                            class="goods-count"><span class="add-q">+</span></td>
+                    <td class="goods-all-price-box">
+                        <p class="goods-all-price">￥399</p>
+                    </td>
+                    <td>
+                        <p class="delete-goods">删除</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border_none">
+                        <input type="checkbox" name="" id="" class="one-check">
+
+                        <dl class="clear-fix">
+                            <dt><img src="https://openfile.meizu.com/group1/M00/07/7C/Cgbj0V2vva6AOk-vAAuUyJ3QsAo839.png@120x120.png"
+                                    alt=""></dt>
+                            <dd>
+                                <p class="goods-name">Pandaer 魔术师帽衫</p>
+                                <p class="goods-color">藏青色 L/175</p>
+                            </dd>
+                        </dl>
+                    </td>
+                    <td class="border_none">
+                        <p class="goods-price">￥399</p>
+                    </td>
+                    <td class="border_none"><span class="less-q">-</span><input type="text" value="1" maxlength="2"
+                            class="goods-count"><span class="add-q">+</span></td>
+                    <td class="goods-all-price-box">
+                        <p class="goods-all-price">￥399</p>
+                    </td>
+                    <td class="border_none">
+                        <p class="delete-goods">删除</p>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="container-box">
+                <div class="msg-box">
+                    <span>合计：</span>
+                    <span id="containerNum">￥0</span>
+                    <input type="button" value="结算" id="containerBtn" class="cantBuy">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="login-wrap">
+            <div class="top clear-fix">
+                <ul>
+                    <li>关于魅族</li>
+                    <li>工作机会</li>
+                    <li>联系我们</li>
+                    <li>法律声明</li>
+                    <li>常见问题</li>
+                    <li class="after-none">简体中文</li>
+                </ul>
+                <p>客服热线 400-788-3333</p>
+                <a href="">在线客服</a>
+            </div>
+            <div class="bottom">
+                <p>©2019 Meizu Telecom Equipment Co., Ltd. All rights reserved.    粤ICP备13003602号合字B2-20170010 营业执照 法律声明
+                    粤公网安备 44049102496009 号</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/Cookie.js"></script>
+<script>
+    $(() => {
+        // 获取数据，渲染页面
+        let user = new Cookie().getValue("user")
+        $.ajax({
+            data:{userphone:user},
+            url:"../server/getShoppingcart.php",
+            dataType:"json",
+            type:"post",
+            success(data){
+                console.log(data)
+            }
+        })
+
+        // 商品数量增加，总价增加
+
+        $(".add-q").click(function () {
+            let num = $(this).prev().val() * 1 + 1
+            $(this).prev().val(num).prev().css({ "cursor": "pointer", "color": "#000" })
+
+            let onePrice = $(this).parent().prev().text().split("￥")[1] * 1
+
+            $(this).parent().next().children(".goods-all-price").text(`￥${(num * onePrice).toFixed(2)}`)
+
+            if ($(this).parents("tr").find(".one-check").prop("checked")) {
+                getAllPrice()
+            }
+        })
+        $(".less-q").click(function () {
+            let num = $(this).next().val() * 1 - 1
+            if (num <= 1) {
+                num = 1
+                $(this).css({ "cursor": "no-drop", "color": "#e0e0e0" })
+            }
+            $(this).next().val(num)
+
+
+            let onePrice = $(this).parent().prev().text().split("￥")[1] * 1
+
+            $(this).parent().next().children(".goods-all-price").text(`￥${(num * onePrice).toFixed(2)}`)
+
+            if ($(this).parents("tr").find(".one-check").prop("checked")) {
+                getAllPrice()
+            }
+        })
+
+        // 获取所用和小计，并计算总价
+        function getAllPrice() {
+            let allPrices = 0
+            $(".one-check").each(function () {
+                if ($(this).prop("checked")) {
+                    allPrices += $(this).parent().siblings(".goods-all-price-box").text().split("￥")[1] * 1
+                }
+            })
+            $("#containerNum").text(`￥${allPrices.toFixed(2)}`)
+        }
+
+        // 全选事件
+        $("#allCheck").click(function () {
+            $(".one-check").prop("checked", $(this).prop("checked"))
+            getAllPrice()
+        })
+        $(".one-check").click(function () {
+            let allCheck = true
+            $(".one-check").each((i, e) => {
+                if (!$(e).prop("checked")) {
+                    allCheck = false
+                    $("#allCheck").prop("checked", false)
+                }
+            })
+            getAllPrice()
+            $("#allCheck").prop("checked", allCheck)
+        })
+        $(".one-check,#allCheck").click(function(){
+            let allCheck = false
+            $(".one-check").each(function(){
+                if($(this).prop("checked")){
+                    allCheck = true
+                    $("#containerBtn").removeClass("cantBuy")
+                }
+            })
+            if(!allCheck){
+                $("#containerBtn").addClass("cantBuy")
+            }
+        })
+    })
+</script>

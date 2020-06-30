@@ -1,11 +1,10 @@
 #header {
-  background-color: #fff;
-  position: relative;
-  margin-bottom: 70px;
+  background-color: #fff !important;
 }
 
 #content {
   background-color: #fff;
+  padding-top: 150px;
   border-bottom: 1px solid #f1f1f1;
   border-top: 1px solid #f1f1f1;
 }
@@ -117,6 +116,10 @@
   color: #8c8c8c;
 }
 
+#content .desc-box .check-list .set-sale dd {
+  margin-left: 85px;
+}
+
 #content .desc-box .check-list .set-sale dd div {
   width: 178px;
   height: 42px;
@@ -158,7 +161,8 @@
 }
 
 #content .desc-box .check-list .set-sale dd .goods-min-num {
-  color: #e0e0e0;
+  color: #e0e0e0 !important;
+  cursor: no-drop !important;
 }
 
 #content .desc-box .check-list .set-sale dd input {
