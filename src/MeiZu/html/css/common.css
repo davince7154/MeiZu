@@ -124,7 +124,7 @@ body {
   color: #666;
 }
 
-#header .index-wrap .header-show .right-box #user-box #userList li a:hover {
+#header .index-wrap .header-show .right-box #user-box #userList li:hover a {
   color: red;
 }
 

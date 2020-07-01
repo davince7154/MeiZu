@@ -68,12 +68,15 @@ $(() => {
 
     // 添加事件（动画）
     function addEvent() {
+        // 放大镜
         new Fangdajing({
             showDom: $(".showImg"),
             hidDom: $(".hidImg"),
             multiple: 2,
             parentDom: $(".showimg-box"),
         })
+
+        // 点击不同颜色，左边图片区域更换图片
         $(".check-list .goods-color dd div").click(function () {
             let imageUrl = $(this).attr("data-imageUrl").split("||")
             $(".img-list li").each((index, ele) => {
@@ -82,9 +85,14 @@ $(() => {
             $(".showImg,.hidImg").css("background-image", `url('${imageUrl[0]}')`)
             $(".showImg").attr("data-name",$(this).find("span").text())
         })
+
+
+        // 选商品信息，选中就聚焦
         $(".check-list  dd div").click(function () {
             $(this).addClass("active").siblings().removeClass("active")
         })
+
+        // 数量增加和减少事件
         $("#goods-num-box span").click(function () {
             if ($(this).attr("id") === "lessen-quantity") {
                 let num = parseInt($(this).next().val()) - 1
@@ -99,12 +107,14 @@ $(() => {
             }
         })
 
+        // 小图片列表点击聚焦事件
         $(".img-list li").click(function () {
             $(this).addClass("active").siblings().removeClass("active")
             $(".showImg,.hidImg").css("background-image", `url('${$(this).find("img").attr("src")}')`)
         })
 
-        $("#addShopingCart").click(function () {
+        // 添加商品事件
+        $("#addShopingCart,#buyNow").click(function () {
             if (new Cookie().getValue("user") !== undefined) {
                 let data = {
                     userphone: new Cookie().getValue("user"),
@@ -115,6 +125,7 @@ $(() => {
                     goodsColorName:$(".showImg").attr("data-name"),
                     goodsColor:$(".img-list li").eq(0).find("img").attr("src"), 
                 }
+
                 $.ajax({
                     data,
                     url: "../server/addGoods2Shoppingcart.php",
@@ -122,11 +133,20 @@ $(() => {
                     dataType: "json",
                     success(data) {
                         alert(data.msg)
-                    }
+                        if (data.status == "success") {
+                            window.dataLength = window.dataLength + 1
+                            $("#shoppingcart-box em").eq(1).text(window.dataLength)
+                        }
+                    },
+                    async:true
                 })
+             if($(this).attr("id")==="buyNow"){
+                 location.href = "shoppingcart.html"
+             }
             }else{
                 alert("请登录在进行购买！！！")
             }
         })
+
     }
 })

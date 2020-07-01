@@ -2,50 +2,65 @@ $(() => {
     // 获取数据，渲染页面
     let user = new Cookie().getValue("user")
     if (user) {
-        $.ajax({
-            data: { userphone: user },
-            url: "../server/getShoppingcart.php",
-            dataType: "json",
-            type: "post",
-            success(data) {
-                let trHtml = data.map((item, i) => {
-                    return `<tr>
-                            <td class="${i == data.length - 1 ? "border_none" : ""}">
-                                <input type="checkbox"  class="one-check">
-                                <dl class="clear-fix">
-                                    <dt><img src="${item["goods_color"]}" alt=""></dt>
-                                    <dd>
-                                        <p class="goods-name" data-goodsId="${item["goods_id"]}">${item["goods_name"]}</p>
-                                        <p class="goods-color">${item["goods_color_name"]}</p>
-                                    </dd>
-                                </dl>
-                            </td>
-                            <td class="${i == data.length - 1 ? "border_none" : ""}">
-                                <p class="goods-price">￥${parseFloat(item["goods_price"]).toFixed(2)}</p>
-                            </td>
-                            <td class="${i == data.length - 1 ? "border_none" : ""}"><span class="less-q" style="${item["goods_count"] == 1 ? `cursor: no-drop; color: #e0e0e0` : ''}">-</span><input type="text" value="${item["goods_count"]}" maxlength="2"
-                                    class="goods-count"><span class="add-q">+</span></td>
-                            <td class="goods-all-price-box ${i == data.length - 1 ? "border_none" : ""}">
-                                <p class="goods-all-price">￥${parseFloat(item["goods_price"] * parseInt(item["goods_count"])).toFixed(2)}</p>
-                            </td>
-                            <td class="${i == data.length - 1 ? "border_none" : ""}">
-                                <p class="delete-goods">删除</p>
-                            </td>
-                        </tr>`
-                }).join("")
-                let tableHtml = `<tr>
-                            <td><input type="checkbox" id="allCheck"><span>全选</span></td>
-                            <td>单价(元)</td>
-                            <td>数量</td>
-                            <td>小计(元)</td>
-                            <td>编辑</td>
-                        </tr>
-                        ${trHtml}`
-                $("table").html(tableHtml)
+        getShoppingcartData()
 
-                addEvent()
-            }
-        })
+
+        // 获取购物车信息，并渲染成表格
+        function getShoppingcartData() {
+            $.ajax({
+                data: { userphone: user },
+                url: "../server/getShoppingcart.php",
+                dataType: "json",
+                type: "post",
+                success(data) {
+                    // 如果购物车里面没有商品
+                    if(data.length === 0){
+                        let html = `<h3>您的购物车空空如也，去<a href="index.html">购买</a></h3>`
+                        $(".shopping-wrap").html(html)
+                        return
+                    }
+
+
+                    
+                    let trHtml = data.map((item, i) => {
+                        return `<tr>
+                                    <td class="${i == data.length - 1 ? "border_none" : ""}">
+                                        <input type="checkbox"  class="one-check">
+                                        <dl class="clear-fix">
+                                            <dt><img src="${item["goods_color"]}" alt=""></dt>
+                                            <dd>
+                                                <p class="goods-name" data-goodsId="${item["goods_id"]}">${item["goods_name"]}</p>
+                                                <p class="goods-color">${item["goods_color_name"]}</p>
+                                            </dd>
+                                        </dl>
+                                    </td>
+                                    <td class="${i == data.length - 1 ? "border_none" : ""}">
+                                        <p class="goods-price">￥${parseFloat(item["goods_price"]).toFixed(2)}</p>
+                                    </td>
+                                    <td class="${i == data.length - 1 ? "border_none" : ""}"><span class="less-q" style="${item["goods_count"] == 1 ? `cursor: no-drop; color: #e0e0e0` : ''}">-</span><input type="text" value="${item["goods_count"]}" maxlength="2"
+                                            class="goods-count"><span class="add-q">+</span></td>
+                                    <td class="goods-all-price-box ${i == data.length - 1 ? "border_none" : ""}">
+                                        <p class="goods-all-price">￥${parseFloat(item["goods_price"] * parseInt(item["goods_count"])).toFixed(2)}</p>
+                                    </td>
+                                    <td class="${i == data.length - 1 ? "border_none" : ""}">
+                                        <p class="delete-goods">删除</p>
+                                    </td>
+                                </tr>`
+                    }).join("")
+                    let tableHtml = `<tr>
+                                    <td><input type="checkbox" id="allCheck"><span>全选</span></td>
+                                    <td>单价(元)</td>
+                                    <td>数量</td>
+                                    <td>小计(元)</td>
+                                    <td>编辑</td>
+                                </tr>
+                                ${trHtml}`
+                    $("table").html(tableHtml)
+
+                    addEvent()
+                }
+            })
+        }
         // 添加事件
 
         function addEvent() {
@@ -135,10 +150,39 @@ $(() => {
                     type: "post",
                 }).done((data) => {
                     alert(data.msg)
-                    $(this).parents("tr").remove()
-                    getAllPrice()
+                    location.reload()
                 })
+
             })
+
+            // 点击结算，删除所用被选中的商品
+            $("#containerBtn").click(function () {
+                if ($(this).css("cursor") === "pointer") {
+                    let goodsIds = []
+                    let goodsColorNames = []
+                    $("table tr").eq(0).siblings().each(function (i, e) {
+                        if ($(this).find(".one-check").prop("checked")) {
+                            goodsIds.push($(this).find(".goods-name").attr("data-goodsId"))
+                            goodsColorNames.push($(this).find(".goods-color").text())
+                        }
+                    })
+                    let data = {
+                        goodsId: goodsIds,
+                        goodsColorName: goodsColorNames,
+                        userphone: new Cookie().getValue("user")
+                    }
+                    $.ajax({
+                        data,
+                        url: "../server/deleteAllGoods.php",
+                        dataType: "json",
+                        type: "post"
+                    }).done(function (data) {
+                        alert(data.msg)
+                        window.location.reload()
+                    })
+                }
+            })
+
         }
     } else {
         let html = `<h3>您还没有登录，请<a href="login.html">登录</a></h3>`

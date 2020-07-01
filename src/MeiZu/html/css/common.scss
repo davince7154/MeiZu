@@ -100,8 +100,10 @@ body {
                             a {
                                 color: #666;
                             }
-                            a:hover {
-                                color: red;
+                        }
+                        li:hover {
+                            a{
+                            color: red;
                             }
                         }
                     }
