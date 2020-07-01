@@ -45,6 +45,7 @@ body {
                 text-align: center;
             }
             form {
+                position: relative;
                 .text-box {
                     height: 48px;
                     border: 1px solid #dadada;
@@ -93,6 +94,20 @@ body {
                 }
                 .active{
                     border-color: red;
+                }
+                #images-code-box{
+                    width: 136px;
+                    height: 48px;
+                    border: 1px solid #dadada;
+                    position: absolute;
+                    right: 22px;
+                    bottom: 41px;
+                    #captcha{
+                        width: 100%;
+                        cursor: pointer;
+                        user-select: none;
+                        height: 100%;
+                    }
                 }
             }
             button {

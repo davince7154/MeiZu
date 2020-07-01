@@ -53,6 +53,10 @@ body {
   text-align: center;
 }
 
+#content .login-wrap .formBox form {
+  position: relative;
+}
+
 #content .login-wrap .formBox form .text-box {
   height: 48px;
   border: 1px solid #dadada;
@@ -107,6 +111,22 @@ body {
 
 #content .login-wrap .formBox form .active {
   border-color: red;
+}
+
+#content .login-wrap .formBox form #images-code-box {
+  width: 136px;
+  height: 48px;
+  border: 1px solid #dadada;
+  position: absolute;
+  right: 22px;
+  bottom: 41px;
+}
+
+#content .login-wrap .formBox form #images-code-box #captcha {
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  height: 100%;
 }
 
 #content .login-wrap .formBox button {

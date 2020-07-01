@@ -33,6 +33,9 @@
                     <input type="text" class="text-box" id="image-code" name="imageCode" placeholder="请输入验证码"
                         maxlength="4">
                     <span id="image-code-text"></span><br>
+                    <div id="images-code-box">
+                        <canvas width="160" height="45" id="captcha"></canvas>
+                    </div>
                     <div class="check-box">
                         <input type="checkbox" name="checkbox" id="checkbox">
                         <span class="checkbox-text">是否7天免登录</span>
@@ -68,5 +71,7 @@
 </html>
 
 <script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js//md5.js"></script>
+<script src="./js/captcha.js"></script>
 <script src="./js/Cookie.js"></script>
 <script src="./js/login.js"></script>

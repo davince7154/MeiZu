@@ -22,7 +22,7 @@
     <div id="content">
         <div class="login-wrap">
             <div class="formBox">
-                <h3>账号登陆</h3>
+                <h3>账号注册</h3>
                 <form action="" name="regForm">
                     <input type="text" class="text-box " id="username" name="username" placeholder="请输入3~9位含英文和数字的用户名"
                         maxlength="11">
@@ -39,6 +39,9 @@
                     <input type="text" class="text-box" id="image-code" name="imageCode" placeholder="请输入验证码"
                         maxlength="4">
                     <span id="image-code-text"></span><br>
+                    <div id="images-code-box" style="bottom: 61px;">
+                        <canvas width="160" height="45" id="captcha"></canvas>
+                    </div>
                     <div class="check-box">
                         <input type="checkbox" name="checkbox" id="checkbox">
                         <span class="checkbox-text reg-checkbox-text">
@@ -77,4 +80,6 @@
 
 </html>
 <script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/captcha.js"></script>
+<script src="./js//md5.js"></script>
 <script src="./js/reg.js"></script>

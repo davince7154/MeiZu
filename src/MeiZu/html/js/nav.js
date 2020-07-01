@@ -1,5 +1,4 @@
 $(() => {
-
     // 获取购物车信息
     function getShoppingCart() {
         $.ajax({
@@ -79,8 +78,8 @@ $(() => {
         // 二级菜单内容区域
 
         let navStr = data.map((item, index) => {
-            if (item.length > 8) {
-                item.length = 8
+            if (item.length > 6) {
+                item.length = 6
             }
             return `<ul>${item.map((e, i) => `<li data-goodsid="${e["goods_id"]}"><img src="${e["goods_color1"].split("||")[0]}" alt=""><span>${e["goods_name"]}</span><i>￥</i><em>${e["goods_price"]}</em></li>`).join("")}</ul>`
         }).join("")
