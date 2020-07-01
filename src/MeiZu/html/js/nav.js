@@ -34,9 +34,11 @@ $(() => {
 
 
             $(e).mouseenter(function () {
+                // if ($(this).index() <= 3) {
                 $("#header .index-wrap .header-hid").css("display", "block").children().eq(i).css("display", "block").siblings().css("display", "none")
 
                 $("#header").css({ "background": "#fff", "border-bottom": "solid 1px #e9e9e9" }).animate({ "height": "265px" }, 300)
+                // }
 
                 // 如果 a标签 的 nowColor属性 是undefined或者false 就让 a标签 的 nowColor属性 赋值等于 现在的颜色
                 // 然后让 a标签 的 change属性 赋值等于 true
@@ -59,6 +61,18 @@ $(() => {
 
             $("#header").stop(true).css({ "height": "80px", "background": "none", "border-bottom": "none" })
 
+        })
+        $("#header .index-wrap .header-show nav li").mouseenter(function () {
+            if ($(this).index() > 3) {
+                let navList = $("#header .index-wrap .header-show nav li")
+                navList.find("a").css("color", navList.find("a").prop("nowColor")).prop({ "nowColor": "none", "change": false })
+
+
+                $("#header .index-wrap .header-hid").css("display", "none")
+
+                $("#header").stop(true).css({ "height": "80px", "background": "none", "border-bottom": "none" })
+
+            }
         })
         // 点击二级菜单的商品，跳转到对应的商品页面
         $(".header-hid ul li").click(function () {
@@ -96,14 +110,66 @@ $(() => {
     })
 
     $("#user-box").mouseenter(function () { $(this).children("#userList").css("display", "block") })
-    $("#userList").mouseleave(function () { $(this).css("display", "none") })
+    $("#user-box").mouseleave(function () { $(this).children("#userList").css("display", "none") })
 
     // 购物车下拉列表事件
     $("#shoppingcart-box").mouseenter(function () {
         $(this).find(".hidden-box").css("display", "block")
+        if (cookie.getValue("user")) {
+            getShoppingCart()
+
+            function getShoppingCart() {
+                $.ajax({
+                    url: "../server/getShoppingcart.php",
+                    data: { userphone: cookie.getValue("user") },
+                    dataType: "json",
+                    type: "post",
+                    success(data) {
+                        data.reverse()
+                        if (data.length >= 5) {
+                            data.length = 5
+                        }
+                        let shoppingcartHtml = data.map((item, index) => {
+                            return ` <li class="${index == data.length - 1 ? "border_none" : ""}">
+                                            <dl>
+                                                <dt><img src="${item["goods_color"]}" alt=""></dt>
+                                                <dd>
+                                                    <p data-goodsId="${item["goods_id"]}" class="goods-name" data-color="${item["goods_color_name"]}">${item["goods_name"]}</p>
+                                                    <em>￥${item["goods_price"]}</em>
+                                                    <button>删除</button>
+                                                </dd>
+                                            </dl>
+                                        </li>`
+                        }).join("")
+                        $("#shoppingcart-box .hidden-box").html(shoppingcartHtml)
+
+                        // 点击删除，删除商品
+                        $("#shoppingcart-box .hidden-box li").click(function () {
+                            let data = {
+                                goodsId: $(this).find(".goods-name").attr("data-goodsId"),
+                                goodsColorName: $(this).find(".goods-name").attr("data-color"),
+                                userphone: new Cookie().getValue("user")
+                            }
+                            $.ajax({
+                                data,
+                                url: "../server/deleteShoppingcart.php",
+                                dataType: "json",
+                                type: "post",
+                            }).done((data) => {
+                                alert(data.msg)
+                            })
+                        })
+                    }
+                })
+            }
+        } else {
+            let html = `<h3>您还没有登录，请<a href="login.html">登录</a></h3>`
+            $(this).find(".hidden-box").html(html)
+        }
+
     })
-    $("#shoppingcart-box .hidden-box").mouseleave(function () {
-        $(this).css("display", "none")
+    $("#shoppingcart-box ").mouseleave(function () {
+        $(this).find(".hidden-box").css("display", "none")
     })
 
 

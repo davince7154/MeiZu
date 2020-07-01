@@ -56,6 +56,7 @@ body {
 #header .index-wrap .header-show .right-box {
   margin-left: 10px;
   float: right;
+  height: 100%;
   width: 260px;
 }
 
@@ -85,7 +86,9 @@ body {
 }
 
 #header .index-wrap .header-show .right-box #user-box {
-  margin: 27px 0 0 8px;
+  margin-left: 5px;
+  padding-top: 27px;
+  height: 100%;
   float: left;
   cursor: pointer;
   position: relative;
@@ -100,7 +103,7 @@ body {
 #header .index-wrap .header-show .right-box #user-box #userList {
   width: 100px;
   position: absolute;
-  top: 40px;
+  top: 67px;
   display: none;
   left: 55%;
   margin-left: -50px;
@@ -140,10 +143,11 @@ body {
 }
 
 #header .index-wrap .header-show .right-box #shoppingcart-box {
-  margin: 27px 0 0 3px;
+  margin-left: 5px;
+  padding-top: 27px;
   position: relative;
   width: 34px;
-  height: 33px;
+  height: 100%;
   float: left;
 }
 
@@ -171,13 +175,13 @@ body {
   color: #fff;
   font-size: 12px;
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: 25px;
+  right: 0px;
 }
 
 #header .index-wrap .header-show .right-box #shoppingcart-box .hidden-box {
   position: absolute;
-  top: 50px;
+  top: 77px;
   left: -200px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   width: 270px;
@@ -185,6 +189,18 @@ body {
   display: none;
   background: #fff;
   min-height: 60px;
+}
+
+#header .index-wrap .header-show .right-box #shoppingcart-box .hidden-box h3 {
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+#header .index-wrap .header-show .right-box #shoppingcart-box .hidden-box h3 a {
+  text-decoration: underline;
 }
 
 #header .index-wrap .header-show .right-box #shoppingcart-box .hidden-box li {

@@ -61,7 +61,7 @@ $(function () {
                                 <h2>${item[0]["goods_type"]}</h2>
                             </div>
                             <div class="section-banner">
-                                <a href=""><img src="${item[0]["image"]}" alt=""></a></div>
+                                <a href="goodsType.html?type=${encodeURI(item[0]["goods_type"])}"><img src="${item[0]["image"]}" alt=""></a></div>
                             <div class="section-list index-wrap">
                                 <ul class="clear-fix">${goodsListStr}</ul>
                             </div>

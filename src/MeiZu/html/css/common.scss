@@ -45,6 +45,7 @@ body {
             .right-box {
                 margin-left: 10px;
                 float: right;
+                height: 100%;
                 width: 260px;
                 #search-box {
                     float: left;
@@ -69,7 +70,9 @@ body {
                     }
                 }
                 #user-box {
-                    margin: 27px 0 0 8px;
+                    margin-left:  5px;
+                    padding-top: 27px;
+                    height: 100%;
                     float: left;
                     cursor: pointer;
                     position: relative;
@@ -81,7 +84,7 @@ body {
                     #userList {
                         width: 100px;
                         position: absolute;
-                        top: 40px;
+                        top: 67px;
                         display: none;
                         left: 55%;
                         margin-left: -50px;
@@ -117,10 +120,11 @@ body {
                     }
                 }
                 #shoppingcart-box {
-                    margin: 27px 0 0 3px;
+                    margin-left: 5px;
+                    padding-top: 27px;
                     position: relative;
                     width: 34px;
-                    height: 33px;
+                    height: 100%;
                     float: left;
                     a {
                         cursor: pointer;
@@ -143,13 +147,13 @@ body {
                             color: #fff;
                             font-size: 12px;
                             position: absolute;
-                            top: -2px;
-                            right: -2px;
+                            top: 25px;
+                            right: 0px;
                         }
                     }
                     .hidden-box {
                         position: absolute;
-                        top: 50px;
+                        top: 77px;
                         left: -200px;
                         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
                         width: 270px;
@@ -157,6 +161,16 @@ body {
                         display: none;
                         background: #fff;
                         min-height: 60px;
+                        h3{
+                            width: 100%;
+                            height: 100px;
+                            line-height: 100px;
+                            text-align: center;
+                            font-weight: bolder;
+                            a{
+                                text-decoration: underline;
+                            }
+                        }
                         li {
                             width: 100%;
                             border-bottom: 1px solid #eee;

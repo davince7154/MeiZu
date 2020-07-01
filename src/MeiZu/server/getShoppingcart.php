@@ -4,7 +4,7 @@ $userphone = $_REQUEST["userphone"];
 
 $con = mysqli_connect("localhost","root","123456","meizu");
 
-$sqlStr = "select goods.*,shoppingcart.goods_count from shoppingcart,goods where shoppingcart.goods_id = goods.goods_id and userphone = $userphone";
+$sqlStr = "select goods_color_name,goods_color,goods_count,goods_id,goods_name,goods_price from shoppingcart where userphone = $userphone";
 
 $res = mysqli_query($con,$sqlStr);
 

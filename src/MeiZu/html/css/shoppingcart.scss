@@ -25,6 +25,19 @@ body {
     background-color: #f4f4f4;
     padding: 10px 0 40px;
     .shopping-wrap {
+        h3 {
+            width: 100%;
+            height: 400px;
+            background-color: #fff;
+            text-align: center;
+            font-size: 40px;
+            line-height: 400px;
+            font-weight: bolder;
+            a{
+                text-decoration: underline;
+                color: #008cff;
+            }
+        }
         table {
             background-color: #fff;
             width: 100%;
@@ -85,7 +98,6 @@ body {
                     color: #00c3f5;
                     font-size: 12px;
                     padding-right: 48px;
-                    cursor: pointer;
                 }
                 td {
                     border-bottom: 1px solid #efefef;
@@ -107,6 +119,7 @@ body {
                 }
                 .delete-goods {
                     color: #e02b41;
+                    cursor: pointer;
                     font-size: 12px;
                 }
                 .add-q,
@@ -174,7 +187,7 @@ body {
                     font-weight: bolder;
                     color: #e02b41;
                 }
-                 #containerBtn{
+                #containerBtn {
                     width: 98px;
                     height: 34px;
                     cursor: pointer;
@@ -184,10 +197,10 @@ body {
                     border-radius: 2px;
                     background-color: red;
                 }
-        
-                .cantBuy{
-                    cursor: no-drop!important;
-                    background-color: #dbdbdb!important;
+
+                .cantBuy {
+                    cursor: no-drop !important;
+                    background-color: #dbdbdb !important;
                 }
             }
         }
