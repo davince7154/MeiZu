@@ -8,6 +8,8 @@ $sqlStr = "select goods_color_name,goods_color,goods_count,goods_id,goods_name,g
 
 $res = mysqli_query($con,$sqlStr);
 
+mysqli_close($con);
+
 $arr = array();
 
 while($data = mysqli_fetch_assoc($res)){

@@ -23,6 +23,7 @@ if(mysqli_num_rows($res)>0){
 }
 
 $res = mysqli_query($con,$sqlStr);
+mysqli_close($con);
 
 
 if($res == 1){

@@ -164,5 +164,5 @@
 
 #content .section .section-list ul li:hover {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  transition: 0.3s linear all;
+  transition: 0.4s linear all;
 }

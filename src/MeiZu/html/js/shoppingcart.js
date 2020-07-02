@@ -14,14 +14,14 @@ $(() => {
                 type: "post",
                 success(data) {
                     // 如果购物车里面没有商品
-                    if(data.length === 0){
+                    if (data.length === 0) {
                         let html = `<h3>您的购物车空空如也，去<a href="index.html">购买</a></h3>`
                         $(".shopping-wrap").html(html)
                         return
                     }
 
 
-                    
+
                     let trHtml = data.map((item, i) => {
                         return `<tr>
                                     <td class="${i == data.length - 1 ? "border_none" : ""}">
@@ -38,7 +38,7 @@ $(() => {
                                         <p class="goods-price">￥${parseFloat(item["goods_price"]).toFixed(2)}</p>
                                     </td>
                                     <td class="${i == data.length - 1 ? "border_none" : ""}"><span class="less-q" style="${item["goods_count"] == 1 ? `cursor: no-drop; color: #e0e0e0` : ''}">-</span><input type="text" value="${item["goods_count"]}" maxlength="2"
-                                            class="goods-count"><span class="add-q">+</span></td>
+                                            class="goods-count" pattern="[0-9]{0,3}" oninput="validity.valid||(value='');"><span class="add-q">+</span></td>
                                     <td class="goods-all-price-box ${i == data.length - 1 ? "border_none" : ""}">
                                         <p class="goods-all-price">￥${parseFloat(item["goods_price"] * parseInt(item["goods_count"])).toFixed(2)}</p>
                                     </td>
@@ -70,6 +70,10 @@ $(() => {
                 let num = $(this).prev().val() * 1 + 1
                 $(this).prev().val(num).prev().css({ "cursor": "pointer", "color": "#000" })
 
+
+                updateGoodsCount(num, this)
+
+
                 let onePrice = $(this).parent().prev().text().split("￥")[1] * 1
 
                 $(this).parent().next().children(".goods-all-price").text(`￥${(num * onePrice).toFixed(2)}`)
@@ -80,12 +84,15 @@ $(() => {
             })
             $(".less-q").click(function () {
                 let num = $(this).next().val() * 1 - 1
-                if (num <= 1) {
+                if ($(this).css("cursor") === "no-drop") {
+                    return
+                } else if (num <= 1) {
                     num = 1
                     $(this).css({ "cursor": "no-drop", "color": "#e0e0e0" })
                 }
-                $(this).next().val(num)
+                updateGoodsCount(num, this)
 
+                $(this).next().val(num)
 
                 let onePrice = $(this).parent().prev().text().split("￥")[1] * 1
 
@@ -105,6 +112,24 @@ $(() => {
                     }
                 })
                 $("#containerNum").text(`￥${allPrices.toFixed(2)}`)
+            }
+
+            // 点击加减号，更新数据库商品数量
+            function updateGoodsCount(AoL, dom) {
+                let data = {
+                    goodsId: $(dom).parents("tr").find(".goods-name").attr("data-goodsId"),
+                    goodsColorName: $(dom).parents("tr").find(".goods-color").text(),
+                    userphone: new Cookie().getValue("user"),
+                    goodsCount: AoL,
+                }
+                $.ajax({
+                    url: "../server/updateGoodsCount.php",
+                    data,
+                    type:"post",
+                    success(data) {
+                        console.log(data)
+                    }
+                })
             }
 
             // 全选事件

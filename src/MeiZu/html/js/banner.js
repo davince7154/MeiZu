@@ -49,7 +49,7 @@ class Banner {
         this.carDom.css({ "color": this.imgBox.find("img").eq(1).data("iswhite") ? "#fff" : "#666" })
 
         if (!this.isLogin) {
-            this.userDom.prop("src", this.imgBox.find("img").eq(1).data("iswhite") ? this.whiteUser : this.blackUser)
+            this.userDom.attr({"src": this.imgBox.find("img").eq(1).data("iswhite") ? this.whiteUser : this.blackUser,"data-color":this.imgBox.find("img").eq(1).data("iswhite") ?"white":"black"})
         }
     }
 
@@ -66,8 +66,13 @@ class Banner {
 
         // 头像部分
         if (!this.isLogin) {
-            this.userDom.prop("src", isWoB ? this.whiteUser : this.blackUser)
+            this.userDom.attr({ "src": isWoB ? this.whiteUser : this.blackUser, "data-color":isWoB?"white":"black"})
         }
+
+        // 左右箭头部分
+        this.jiantouL.css({ "color": isWoB ? "#fff" : "#666", "border-color": isWoB ? "#fff" : "#666" })
+        this.jiantouR.css({ "color": isWoB ? "#fff" : "#666", "border-color": isWoB ? "#fff" : "#666" })
+
 
         // 轮播部分
         let boxW = parseInt(this.dom.width())
@@ -117,7 +122,7 @@ class Banner {
         this.dom.mouseleave(() => {
             this.autoPlay()
         })
-        this.navDom.mouseover(()=>{
+        this.navDom.mouseover(() => {
             this.stopPlay()
         })
         this.jiantouR.click(() => {

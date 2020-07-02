@@ -8,7 +8,7 @@ $(function () {
             let a = new Banner({
                 imgs: data,
                 dom: $("#banner"),
-                moveTime: 300,
+                moveTime: 500,
                 isLogin: new Cookie().getValue("user") ? true : false,
                 cutTime: 3000,
                 whiteUser: "./images/whiteUser.png",

@@ -94,10 +94,19 @@ $(() => {
 
             $(e).mouseenter(function () {
 
+
+                // 对应的商品二级菜单显示
                 $("#header .index-wrap .header-hid").css("display", "block").children().eq(i).css("display", "block").siblings().css("display", "none")
 
                 $("#header").css({ "background": "#fff", "border-bottom": "solid 1px #e9e9e9" }).animate({ "height": "265px" }, 300)
 
+
+                // 头像，购物车颜色变化
+                if (!new Cookie().getValue("user")) {
+                    $("#user-box img").attr("src", "./images/blackUser.png")
+                }
+                $("#shoppingcart-box a em").eq(0).prop({ "nowColor": $("#shoppingcart-box a em").eq(0).prop("change") === undefined || $("#shoppingcart-box a em").eq(0).prop("change") === false ? $("#shoppingcart-box a em").eq(0).css("color") : $("#shoppingcart-box a em").eq(0).prop("nowColor"), "change": true })
+                    .css("color", "#333")
 
                 // 如果 a标签 的 nowColor属性 是undefined或者false 就让 a标签 的 nowColor属性 赋值等于 现在的颜色
                 // 然后让 a标签 的 change属性 赋值等于 true
@@ -115,6 +124,12 @@ $(() => {
             let navList = $("#header .index-wrap .header-show nav li")
             navList.find("a").css("color", navList.find("a").prop("nowColor")).prop({ "nowColor": "none", "change": false })
 
+            // 头像，购物车颜色变化
+            if (!new Cookie().getValue("user")) {
+                $("#user-box img").attr("src", `./images/${$("#user-box img").attr("data-color")}User.png`)
+            }
+            $("#shoppingcart-box a em").eq(0).css("color", $("#shoppingcart-box a em").eq(0).prop("nowColor")).prop({ "nowColor": "none", "change": false })
+
 
             $(this).css("display", "none")
 
@@ -123,11 +138,18 @@ $(() => {
         })
 
 
-
         $("#header .index-wrap .header-show nav li").mouseenter(function () {
             if ($(this).index() > 3) {
                 let navList = $("#header .index-wrap .header-show nav li")
                 navList.find("a").css("color", navList.find("a").prop("nowColor")).prop({ "nowColor": "none", "change": false })
+
+
+                // 头像，购物车颜色变化
+                if (!new Cookie().getValue("user")) {
+                    $("#user-box img").attr("src", `./images/${$("#user-box img").attr("data-color")}User.png`)
+                }
+                $("#shoppingcart-box a em").eq(0).css("color", $("#shoppingcart-box a em").eq(0).prop("nowColor")).prop({ "nowColor": "none", "change": false })
+
 
 
                 $("#header .index-wrap .header-hid").css("display", "none")

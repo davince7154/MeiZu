@@ -22,7 +22,7 @@ $(() => {
 
         /* 自动触发标签的事件 */
         $("#image-code").trigger("blur");
-        
+
     });
 
 
@@ -80,7 +80,7 @@ $(() => {
         if ($("form[name=regForm]").find(".active").length === 0 && $("#checkbox").prop("checked")) {
             let data = {
                 userphone: $("#userphone").val(),
-                userpass: md5($("#password").val()).slice(0,15),
+                userpass: md5($("#password").val()).slice(0, 15),
                 username: $("#username").val(),
             }
             $.ajax({
@@ -91,7 +91,7 @@ $(() => {
             }).done(function (data) {
                 if (data.status === "success") {
                     let s = 3
-                    $("h3").css("font-size","18px").text(`注册成功，${s}秒后跳转登录页面`)
+                    $("h3").css("font-size", "18px").text(`注册成功，${s}秒后跳转登录页面`)
                     let myTimer = setInterval(() => {
                         s--
                         $("h3").text(`注册成功，${s}秒后跳转登录页面`)
@@ -102,8 +102,10 @@ $(() => {
                         }
 
                     }, 1000)
-                }else{
+                } else {
                     alert(data.msg)
+                    $("#captcha").trigger("click")
+                    $("#password").val("")
                 }
             })
         } else {

@@ -18,6 +18,9 @@ $sqlStr = "delete from shoppingcart where goods_id in($goodsIdStr) and goods_col
 
 $res = mysqli_query($con, $sqlStr);
 
+mysqli_close($con);
+
+
 if ($res == 1) {
     echo '{"status":"success","msg":"结算成功！"}';
 } else {

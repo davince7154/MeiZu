@@ -97,6 +97,8 @@ $(function () {
                     }, 1000)
                 } else {
                     alert(data.msg)
+                    $("#captcha").trigger("click")
+                    $("#password").val("")
                 }
             })
         } else {

@@ -1,10 +1,9 @@
 <?php
 
-// $userphone = $_REQUEST["userphone"];
-// $userpass = $_REQUEST["userpass"];
+$userphone = $_REQUEST["userphone"];
 
-$userphone = 13245678910;
-$userpass = "123456";
+$userpass = $_REQUEST["userpass"];
+
 
 
 $con = mysqli_connect("localhost", "root", "123456", "meizu");
