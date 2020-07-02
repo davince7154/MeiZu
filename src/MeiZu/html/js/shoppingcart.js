@@ -126,9 +126,6 @@ $(() => {
                     url: "../server/updateGoodsCount.php",
                     data,
                     type:"post",
-                    success(data) {
-                        console.log(data)
-                    }
                 })
             }
 

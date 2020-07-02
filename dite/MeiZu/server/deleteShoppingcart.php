@@ -9,6 +9,7 @@ $sqlStr = "delete from shoppingcart where goods_id = '$goodsId' and userphone = 
 
 
 $res = mysqli_query($con,$sqlStr);
+mysqli_close($con);
 
 if($res == 1){
     echo '{"status":"success","msg":"删除成功！"}';
