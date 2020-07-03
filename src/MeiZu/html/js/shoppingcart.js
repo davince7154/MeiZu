@@ -38,7 +38,7 @@ $(() => {
                                         <p class="goods-price">￥${parseFloat(item["goods_price"]).toFixed(2)}</p>
                                     </td>
                                     <td class="${i == data.length - 1 ? "border_none" : ""}"><span class="less-q" style="${item["goods_count"] == 1 ? `cursor: no-drop; color: #e0e0e0` : ''}">-</span><input type="text" value="${item["goods_count"]}" maxlength="2"
-                                            class="goods-count" pattern="[0-9]{0,3}" oninput="validity.valid||(value='');"><span class="add-q">+</span></td>
+                                            class="goods-count" pattern="[0-9]{0,2}" oninput="validity.valid||(value='');"><span class="add-q">+</span></td>
                                     <td class="goods-all-price-box ${i == data.length - 1 ? "border_none" : ""}">
                                         <p class="goods-all-price">￥${parseFloat(item["goods_price"] * parseInt(item["goods_count"])).toFixed(2)}</p>
                                     </td>
@@ -64,6 +64,8 @@ $(() => {
         // 添加事件
 
         function addEvent() {
+
+
             // 商品数量增加，总价增加
 
             $(".add-q").click(function () {
@@ -98,10 +100,21 @@ $(() => {
 
                 $(this).parent().next().children(".goods-all-price").text(`￥${(num * onePrice).toFixed(2)}`)
 
-                if ($(this).parents("tr").find(".one-check").prop("checked")) {
-                    getAllPrice()
-                }
+                // if ($(this).parents("tr").find(".one-check").prop("checked")) {
+                getAllPrice()
+                // }
             })
+
+
+            $(".goods-count").blur(function () {
+                let onePrice = $(this).parent().prev().text().split("￥")[1] * 1
+
+                $(this).parent().next().children(".goods-all-price").text(`￥${($(this).val() * onePrice).toFixed(2)}`)
+
+                getAllPrice()
+                updateGoodsCount($(this).val() * 1, this)
+            })
+
 
             // 获取所用和小计，并计算总价
             function getAllPrice() {
@@ -115,17 +128,17 @@ $(() => {
             }
 
             // 点击加减号，更新数据库商品数量
-            function updateGoodsCount(AoL, dom) {
+            function updateGoodsCount(count, dom) {
                 let data = {
                     goodsId: $(dom).parents("tr").find(".goods-name").attr("data-goodsId"),
                     goodsColorName: $(dom).parents("tr").find(".goods-color").text(),
                     userphone: new Cookie().getValue("user"),
-                    goodsCount: AoL,
+                    goodsCount: count,
                 }
                 $.ajax({
                     url: "../server/updateGoodsCount.php",
                     data,
-                    type:"post",
+                    type: "post",
                 })
             }
 
@@ -204,6 +217,9 @@ $(() => {
                     })
                 }
             })
+
+
+
 
         }
     } else {
