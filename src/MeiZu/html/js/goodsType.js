@@ -62,7 +62,10 @@ $(() => {
                                         <p class="goods-price-box"><i>￥</i><em class="goods-price">${item["goods_price"]}</em></p>
                                     </li>`
                         }).join("")
-                        $(".goods-list").html(goodsListStr)
+                        $(".goods-list").html(goodsListStr).find("li").click(function(){
+                            open("goods.html?goodsId="+$(this).attr("data-goodsId"))
+                        })
+                        
                     }
                 })
             }
